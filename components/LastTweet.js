@@ -1,7 +1,7 @@
 import styles from '../styles/LastTweet.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 function LastTweet(props) {
 
@@ -23,6 +23,7 @@ function LastTweet(props) {
         </div>
         <div className={styles.tweetFooter}>
         <FontAwesomeIcon icon={faHeart} onClick={() => handleLikeClick()} style={iconStyle} /> {props.numberLikes}
+        <FontAwesomeIcon icon={faTrashCan} onClick={()=> handleDeleteTweet()} />
         </div>
     </div>
   );

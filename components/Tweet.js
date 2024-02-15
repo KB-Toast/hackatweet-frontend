@@ -1,6 +1,8 @@
 import styles from '../styles/Tweet.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+
 
 
 
@@ -25,6 +27,7 @@ function Tweet(props) {
         </div>
         <div className={styles.tweetFooter}>
         <FontAwesomeIcon icon={faHeart} onClick={() => handleLikeClick()} style={iconStyle} /> {props.numberLikes}
+        <FontAwesomeIcon icon={faTrashCan} onClick={()=> handleDeleteTweet()} />
         </div>
     </div>
   );
