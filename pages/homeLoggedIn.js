@@ -1,10 +1,36 @@
 import styles from '../styles/HomeLoggedIn.module.css';
-import { useState} from 'react';
+import { useState, useEffect } from 'react';
 import Tweet from '../components/Tweet';
+import LastTweet from '../components/LastTweet';
 
 function Index() {
 
     const [tweetText, setTweetText] = useState();
+
+    const [tweetsData, setTweetsData] = useState([]);
+    const [lastedTweet, setLastTweet] = useState({});
+   
+  
+    useEffect(() => {
+      fetch('http://localhost:3000/tweets')
+        .then(response => response.json())
+        .then(data => {
+          // console.log(data.Tweet[data.Tweet.length - 1])
+          setLastTweet(data.Tweet[data.Tweet.length - 1]);
+          setTweetsData(data.Tweet.reverse());
+        });
+        
+    }, []);
+
+      console.log(tweetsData)
+      // console.log(lastedTweet)
+    let tweets = tweetsData.filter((data, i) => i > 0).map((data, i) => {
+        return (<Tweet key={i} 
+        {...data} 
+         />)
+    });
+
+    let  lastTweet = <LastTweet {...lastedTweet} />
 
     const handleClickAddTweet = () => {
         // add tweet to DB
@@ -38,8 +64,8 @@ function Index() {
                 </div>
             </div>
             <div className={styles.tweetsContainer}>
-                <Tweet />
-                <Tweet />
+              {lastTweet}
+              {tweets}
                 <Tweet />
             </div>
         </div>
