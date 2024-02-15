@@ -1,0 +1,28 @@
+.tweet {
+    padding: .7rem;
+    width: 100%;
+}
+
+.tweet:not(:last-child) {
+    border-top: 1px solid #424953;
+    border-bottom: 1px solid #424953;
+}
+
+.tweetHeader {
+    font-weight: bold;
+}
+
+.tweetHeader span {
+    color: #727b85;
+    font-weight: normal;
+}
+
+.tweetMain {
+    padding: .7rem 0;
+}
+
+.tweetMain span {
+    color: #427ece;
+}
+
+.tweetFooter {}

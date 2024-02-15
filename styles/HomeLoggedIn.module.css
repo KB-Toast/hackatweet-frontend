@@ -1,0 +1,114 @@
+/* GLOBAL LAYOUT */
+
+.layoutContainer {
+    display: flex;
+    justify-content: space-between;
+    color: #FFFFFF;
+    width: 100vw;
+    min-height: 100vh;
+}
+
+/* GLOBAL STYLING */
+
+.partsTitle {
+    padding: 1.5rem 0;
+}
+
+/* LEFT PART*/
+
+.layoutLeft {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+.leftFooter {
+    padding: 1.5rem 0;
+}
+
+/* CENTER PART */
+
+.layoutCenter {
+    width: 45%;
+    border-left: 1px solid #424953;
+    border-right: 1px solid #424953;
+}
+
+.layoutCenter h2 {
+    padding: 0 1rem;
+}
+
+/* CENTER PART --> TOP PART */
+.addTweet {
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.addTweet .tweetText {
+    width: 100%;
+}
+
+.tweetText textarea {
+    border-style: none none solid none;
+    background-color: transparent;
+    outline: none;
+    color: #FFFFFF;
+    width: 100%;
+}
+
+.addTweet .tweetActions {
+    display: flex;
+}
+
+
+.counterTweet {
+    padding: 0 .7rem;
+}
+
+.buttonTweet {}
+
+/* CENTER PART --> TWEETS PART */
+
+.tweetsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+/* RIGHT PART */
+
+.layoutRight {
+    width: 35%;
+    padding: 0 1rem;
+}
+
+.rightTrendsContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: #1f2731;
+    padding: 1rem;
+    border-radius: .7rem;
+    border: none;
+}
+
+.rightTrendsContainer li:not(:first-child) {
+    margin-top: .9rem;
+}
+
+.rightTrendsContainer li:not(:last-child) {
+    margin-bottom: .9rem;
+}
+
+.rightTrendsContainer li {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.rightTrendCounter {
+    color: #727b85;
+    margin-top: .3rem;
+}
