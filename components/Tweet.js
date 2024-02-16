@@ -6,7 +6,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 function Tweet(props) {
 
   // use props to replace values
-  console.log('props: ', props);
+  //console.log('props: ', props);
 
   let iconStyle = {};
   // most likely different than "props.isLiked" but the idea if to check if user already liked the tweet

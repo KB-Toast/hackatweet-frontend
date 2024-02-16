@@ -10,6 +10,8 @@ function Index() {
         // add tweet to DB
     };
 
+    console.log(tweetText);
+
 
   return (
   <div className={styles.layoutContainer}>
