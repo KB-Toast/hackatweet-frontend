@@ -9,10 +9,11 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-        // if login, 2 trucs, if sign up, 3 trucs
+      console.log('action.payload: ', action.payload);
       state.value.token = action.payload.token;
       state.value.userName = action.payload.userName;
-      if (state.value.firstName && state.value.firstName !== null) {
+      if (action.payload.firstName && action.payload.firstName !== null) {
+        console.log('test')
         state.value.firstName = action.payload.firstName;
       }
       

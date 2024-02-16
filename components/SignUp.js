@@ -4,13 +4,10 @@ import { login } from '../reducers/user';
 import { useRouter } from 'next/router';
 import styles from '../styles/SignUp.module.css';
 
-
-
 function SignUp() {
- 
-  const [signUpUsername, setSignUpUsername] = useState('');
-  const [signUpFirstName, setSignUpFirstName] = useState('');
-  const [signUpPassword, setSignUpPassword] = useState('');
+  const [signUpUsername, setSignUpUsername] = useState();
+  const [signUpFirstName, setSignUpFirstName] = useState();
+  const [signUpPassword, setSignUpPassword] = useState();
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -52,20 +49,17 @@ function SignUp() {
         <input
           className={styles.input}
           placeholder="First Name"
-          value={signUpFirstName}
           onChange={(e) => setSignUpFirstName(e.target.value)}
         />
         <input
           className={styles.input}
           placeholder="Username"
-          value={signUpUsername}
           onChange={(e) => setSignUpUsername(e.target.value)}
         />
         <input
           className={styles.input}
           type="password"
           placeholder="Password"
-          value={signUpPassword}
           onChange={(e) => setSignUpPassword(e.target.value)}
         />
          <button key="submit"  onClick={handleSignUp}>

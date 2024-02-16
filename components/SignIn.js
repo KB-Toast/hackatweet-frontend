@@ -5,10 +5,8 @@ import { useRouter } from 'next/router';
 import styles from '../styles/SignIn.module.css'; 
 
 function SignIn() {
-  const [signInUsername, setSignInUsername] = useState('');
-  const [signInPassword, setSignInPassword] = useState('');
-  const [loading, setLoading] = useState(false); // État pour le chargement
-  const [error, setError] = useState(''); // État pour les messages d'erreur
+  const [signInUsername, setSignInUsername] = useState();
+  const [signInPassword, setSignInPassword] = useState();
   const dispatch = useDispatch();
   const router = useRouter();
 
