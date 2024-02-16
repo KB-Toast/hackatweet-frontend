@@ -16,13 +16,16 @@
     
    }
    
-   .button {
+   .btnUp {
      background-color: white;
      color: black;
      width: 50%;
      align-self: center;
      border: white;
      border-radius: 20px;
+     padding: 10px;
+     margin-bottom: 10px;
+     font-weight: 600;
    }
    
    .errorMessage {
@@ -30,6 +33,11 @@
      margin-bottom: 10px;
    }
    .imgLogo{
-     width: 25%;
+     width: 23%;
      align-self: center;
+   }
+   .create{
+    color: white;
+    align-self: center;
+    padding: 20px;
    }

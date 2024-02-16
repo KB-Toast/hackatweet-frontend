@@ -46,6 +46,7 @@ function SignUp() {
   return (
     <div className={styles.signUpContainer}>
        <img className={styles.imgLogo} src='../images/bird.png'/>
+       <p className={styles.create}>Create your Hackatweet account</p>
         <input
           className={styles.input}
           placeholder="First Name"
@@ -62,7 +63,7 @@ function SignUp() {
           placeholder="Password"
           onChange={(e) => setSignUpPassword(e.target.value)}
         />
-         <button key="submit"  onClick={handleSignUp}>
+         <button className={styles.btnUp} key="submit"  onClick={handleSignUp}>
             Sign up
          </button>
     </div>

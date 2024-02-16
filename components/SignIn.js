@@ -50,6 +50,7 @@ function SignIn() {
   return (
     <div className={styles.signInContainer}>
        <img className={styles.imgLogo} src='../images/bird.png'/>
+       <p className={styles.connect}>Connect to Hackatweet</p>
       <input
         className={styles.input}
         placeholder="user name"
@@ -61,7 +62,7 @@ function SignIn() {
         placeholder="password"
         onChange={(e) => setSignInPassword(e.target.value)}
       />
-    <button key="submit"  onClick={() => handleSignIn()}>
+    <button className={styles.btnIn} key="submit"  onClick={() => handleSignIn()}>
     Sign in
      </button>
   </div>

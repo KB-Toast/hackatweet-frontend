@@ -5,8 +5,6 @@ import styles from '../styles/Home.module.css';
 
 function Home() {
 
-
-
     return (     
 
         <section className={styles.containerFull}>
@@ -22,14 +20,6 @@ function Home() {
              </div>
       </section>
       
-     
-       
-
-
-
-
-
-
 
     )
 }
