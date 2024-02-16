@@ -12,6 +12,8 @@ function LastTweet(props) {
     const currentNbrLikes = stateCurrentNbrLikes ? stateCurrentNbrLikes : 0;
     const [nbrLikes, setNbrLikes] = useState(currentNbrLikes);
 
+    const currentUser = useSelector((state) => state.user.value);
+
 
 const handleLikeClick = () => {
   // add "token" to numberLikes in BDD
@@ -29,7 +31,7 @@ const handleDeleteTweet = () => {
   return (
     <div className={styles.tweet}>
         <div className={styles.tweetHeader}>
-        <img src='../images/user.png' className={styles.tweetImg} />  {props.author} + <span> @{props.author} - {props.date}</span>
+        <img src='../images/user.png' className={styles.tweetImg} />  {currentUser.userName}  <span> @{currentUser.firstName} - {props.date}</span>
         </div>
         <div className={styles.tweetMain}>
             {props.text}
