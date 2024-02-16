@@ -22,7 +22,7 @@ function Index() {
         
     }, []);
 
-      console.log(tweetsData)
+      // console.log(tweetsData)
       // console.log(lastedTweet)
     let tweets = tweetsData.filter((data, i) => i > 0).map((data, i) => {
         return (<Tweet key={i} 
