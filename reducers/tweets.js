@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  tweets: [],
+  value: [],
 };
 
 // text, date, author, nombreLikes, trend
@@ -11,17 +11,10 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     getTweets: (state, action) => {
-      console.log('getTweets payload: ', action.payload);
-      state.tweets = [...action.payload];
+      state.value = [...action.payload];
     },
-    addTweets: (state) => {
-      console.log(state);
-    },
-    deleteTweets: (state) => {
-        console.log(state);
-    }
   },
 });
 
-export const { getTweets, addTweets, deleteTweets } = userSlice.actions;
+export const { getTweets } = userSlice.actions;
 export default userSlice.reducer;
