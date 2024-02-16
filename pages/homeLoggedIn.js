@@ -3,26 +3,22 @@ import { useState, useEffect } from 'react';
 import Tweet from '../components/Tweet';
 import LastTweet from '../components/LastTweet';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTweets} from '../reducers/tweets';
+import { getTweets } from '../reducers/tweets';
 
 function Index() {
     const dispatch = useDispatch();
 
     const [tweetText, setTweetText] = useState();
-    const tweetsList = useSelector((state) => state.tweets.value);
+    const currentUser = useSelector((state) => state.user.value);
 
-    const [tweetsData, setTweetsData] = useState([]);
+    const [tweetsData, setTweetsData] = useState(useSelector((state) => state.tweets.value));
     const [lastedTweet, setLastTweet] = useState({});
-
-    // to remove when token is ok
-    const sampleToken = '0sT99VOi5LHIxdmp_wu7C6CvrJhO56IL';
-   
   
     useEffect(() => {
+        
       fetch('http://localhost:3000/tweets')
         .then(response => response.json())
         .then(data => {
-          // console.log(data.Tweet[data.Tweet.length - 1])
           setLastTweet(data.Tweet[data.Tweet.length - 1]);
           setTweetsData(data.Tweet.reverse());
           dispatch(getTweets(data.Tweet));
@@ -31,34 +27,43 @@ function Index() {
     }, []);
 
     const handleDeleteTweet = (id) => {
-        console.log('todo: delete id: ', id);
+        fetch(`http://localhost:3000/tweets/delete/${id}`, {
+			method: 'DELETE',
+			headers: { 'Content-Type': 'application/json' },
+		}).then(response => response.json())
+			.then(data => {
+				if (data.result) {
+                    console.log('tweet deleted from db');
+                    const indexToDelete = (elem) => elem._id === id;
+                    const newTweetsData = [...tweetsData];
+                    newTweetsData.splice(tweetsData.findIndex(indexToDelete), 1);
+                    setTweetsData([...newTweetsData]);
+                }
+            });
     }
 
-      // console.log(tweetsData)
-      // console.log(lastedTweet)
     let tweets = tweetsData.filter((data, i) => i > 0).map((data, i) => {
         return (<Tweet key={i} {...data} handleDeleteTweet={handleDeleteTweet} />)
     });
 
     let  lastTweet = <LastTweet {...lastedTweet} handleDeleteTweet={handleDeleteTweet} />
 
+    
     const handleClickAddTweet = () => {
         // add tweet to DB
-        fetch(`http://localhost:3000/tweets/addTweet/${sampleToken}`, {
+        fetch(`http://localhost:3000/tweets/addTweet/${currentUser.token}`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ text: tweetText }),
 		}).then(response => response.json())
 			.then(data => {
 				if (data.result) {
-					console.log('data.result: ', data.result);
+                    setTweetsData([data.newTweet, ...tweetsData]);
+                    setLastTweet(data.newTweet);
 					setTweetText('');
 				}
 			});
     };
-
-    console.log(tweetText);
-
 
   return (
   <div className={styles.layoutContainer}>
@@ -67,7 +72,7 @@ function Index() {
             <div>Logo here</div>
         </div>
         <div className={styles.leftFooter}>
-            User info + logout here
+            {currentUser.userName} + @{currentUser.firstName} + logout here
         </div>
     </div>
     <div className={styles.layoutCenter}>
@@ -75,7 +80,7 @@ function Index() {
             <h2 className={styles.h2}>Home</h2>
             <div className={styles.addTweet}>
                 <div className={styles.tweetText}>
-                <textarea name="addTweet" placeholder="What's up ?" onChange={(e) => setTweetText(e.target.value)}/>
+                <textarea name="addTweet" placeholder="What's up ?" value={tweetText} onChange={(e) => setTweetText(e.target.value)}/>
                 </div>
                 <div className={styles.tweetActions}>
                     <div className={styles.counterTweet}>    

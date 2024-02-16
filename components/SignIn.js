@@ -28,7 +28,7 @@ function SignIn() {
     .then((response) => response.json())
       .then((data) => {
         if (data.result) {
-          dispatch(login({ userName: signInUsername, token: data.token }));
+          dispatch(login({ userName: signInUsername, token: data.token, firstName: data.firstName }));
 
           closeModal();
           router.push('/homeLoggedIn');
