@@ -12,7 +12,7 @@ export const userSlice = createSlice({
         // if login, 2 trucs, if sign up, 3 trucs
       state.value.token = action.payload.token;
       state.value.userName = action.payload.userName;
-      if (state.value.firstName) {
+      if (state.value.firstName && state.value.firstName !== null) {
         state.value.firstName = action.payload.firstName;
       }
       

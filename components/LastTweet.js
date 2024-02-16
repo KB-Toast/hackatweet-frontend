@@ -16,13 +16,14 @@ function LastTweet(props) {
   return (
     <div className={styles.tweet}>
         <div className={styles.tweetHeader}>
-            img + Author + <span> @Author - {props.date}</span>
+            img + {props.author} + <span> @{props.author} - {props.date}</span>
         </div>
         <div className={styles.tweetMain}>
             {props.text}
         </div>
         <div className={styles.tweetFooter}>
         <FontAwesomeIcon icon={faHeart} onClick={() => handleLikeClick()} style={iconStyle} /> {props.numberLikes}
+        {props.numberLikes ? props.numberLikes.length : 0}
         <FontAwesomeIcon icon={faTrashCan} onClick={()=> handleDeleteTweet()} />
         </div>
     </div>

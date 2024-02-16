@@ -111,7 +111,7 @@ function Home() {
 					{modalContent}
 				</Modal>
   </div>*/}
-
+<Link href="/homeLoggedIn">LoggedIn</Link>
       <div className={styles.registerContainer}>
 				<div className={styles.registerSection}>
 					<p>Sign-up</p>
