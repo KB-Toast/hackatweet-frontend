@@ -40,7 +40,7 @@ const handleDeleteTweet = () => {
   return (
     <div className={styles.tweet}>
         <div className={styles.tweetHeader}>
-            img + {props.author} + <span> @{props.author} - {props.date}</span>
+        <img src='../images/user.png' className={styles.tweetImg} /> {props.author} + <span> @{props.author} - {props.date}</span>
         </div>
         <div className={styles.tweetMain}>
             {props.text}

@@ -1,11 +1,9 @@
 /* Définissez des styles de base pour votre bouton */
 .button {
- 
-   
-    border-radius: 4px;
-    color: white;
-    cursor: pointer;
-    
-  }
-  
-  
+
+
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+
+}

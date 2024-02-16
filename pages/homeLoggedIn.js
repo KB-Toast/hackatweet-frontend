@@ -4,6 +4,7 @@ import Tweet from '../components/Tweet';
 import LastTweet from '../components/LastTweet';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTweets } from '../reducers/tweets';
+import Button from '../components/Button';
 
 function Index() {
     const dispatch = useDispatch();
@@ -26,6 +27,11 @@ function Index() {
         
     }, []);
 
+    const handleClickLogOut = () => {
+        console.log('log out');
+        // todo: log out user
+    };
+
     const handleDeleteTweet = (id) => {
         fetch(`http://localhost:3000/tweets/delete/${id}`, {
 			method: 'DELETE',
@@ -38,6 +44,10 @@ function Index() {
                     const newTweetsData = [...tweetsData];
                     newTweetsData.splice(tweetsData.findIndex(indexToDelete), 1);
                     setTweetsData([...newTweetsData]);
+
+                    if (id === lastedTweet._id) {
+                        setLastTweet(newTweetsData[0]);
+                    }
                 }
             });
     }
@@ -48,8 +58,17 @@ function Index() {
 
     let  lastTweet = <LastTweet {...lastedTweet} handleDeleteTweet={handleDeleteTweet} />
 
-    
+    // gestion du tweet trop long via style
+    let counterStyle = {};
+    if (tweetText && tweetText.length > 280) {
+        counterStyle = { 'color': 'red' };
+    }
+
     const handleClickAddTweet = () => {
+        if (tweetText.length > 280) {
+            console.log('TLDR, make it shorter');
+        } else {
+
         // add tweet to DB
         fetch(`http://localhost:3000/tweets/addTweet/${currentUser.token}`, {
 			method: 'POST',
@@ -63,16 +82,33 @@ function Index() {
 					setTweetText('');
 				}
 			});
+        }
     };
 
   return (
   <div className={styles.layoutContainer}>
     <div className={styles.layoutLeft}>
         <div className={styles.partsTitle}>
-            <div>Logo here</div>
+            <div className={styles.logoImg}>
+                <img src='../images/bird.png'/>
+            </div>
         </div>
         <div className={styles.leftFooter}>
-            {currentUser.userName} + @{currentUser.firstName} + logout here
+            <div className={styles.leftFooterTop}>
+                <img src='../images/user.png' />
+                <div className={styles.user}>
+                    <div>
+                        {currentUser.userName} + @{currentUser.firstName}
+                    </div>
+                </div>
+            </div>
+            <div className={styles.leftFooterBottom}>
+                <Button
+                        className={styles.btnLogOut}
+                        text="Log out"
+                        onClick={() => handleClickLogOut()}
+                    />
+            </div>
         </div>
     </div>
     <div className={styles.layoutCenter}>
@@ -83,12 +119,14 @@ function Index() {
                 <textarea name="addTweet" placeholder="What's up ?" value={tweetText} onChange={(e) => setTweetText(e.target.value)}/>
                 </div>
                 <div className={styles.tweetActions}>
-                    <div className={styles.counterTweet}>    
-                        {tweetText ? tweetText.length : 0}
+                    <div className={styles.counterTweet} style={counterStyle}>    
+                        {tweetText ? tweetText.length : 0}/280
                     </div>
-                    <div className={styles.buttonTweet}>
-                        <button onClick={() => handleClickAddTweet()}>Add tweet</button>
-                    </div>
+                    <Button
+                        className={styles.btnUpHome}
+                        text="Tweet"
+                        onClick={() => handleClickAddTweet()}
+                    />
                 </div>
             </div>
             <div className={styles.tweetsContainer}>
