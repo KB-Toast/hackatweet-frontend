@@ -10,6 +10,14 @@
 
 .tweetHeader {
     font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.tweetImg {
+    width: 3rem;
+    height: auto;
+    margin-right: 1rem;
 }
 
 .tweetHeader span {
@@ -25,4 +33,6 @@
     color: #427ece;
 }
 
-.tweetFooter {}
+.tweetFooter span {
+    padding: 0 .5rem;
+}

@@ -33,4 +33,6 @@
     color: #427ece;
 }
 
-.tweetFooter {}
+.tweetFooter span {
+    padding: 0 .5rem;
+}
