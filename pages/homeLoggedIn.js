@@ -11,9 +11,9 @@ function Index() {
 
     const [tweetText, setTweetText] = useState();
     const currentUser = useSelector((state) => state.user.value);
-
     const [tweetsData, setTweetsData] = useState(useSelector((state) => state.tweets.value));
     const [lastedTweet, setLastTweet] = useState({});
+    const [trendsList, setTrendsList] = useState([]);
   
     useEffect(() => {
         
@@ -22,6 +22,17 @@ function Index() {
         .then(data => {
           setLastTweet(data.Tweet[data.Tweet.length - 1]);
           setTweetsData(data.Tweet.reverse());
+            // add trends
+            let newTrendsList = [];
+            for (let elem of data.Tweet) {
+                if (elem.trend.length > 0) {
+                    for (let trend of elem.trend) {
+                        newTrendsList.push(trend[0]);
+                    }
+                }
+            }
+            //console.log("ntl: ", newTrendsList);
+            // end add trends
           dispatch(getTweets(data.Tweet));
         });
         
@@ -31,6 +42,8 @@ function Index() {
         console.log('log out');
         // todo: log out user
     };
+
+    //console.log(tweetsData);
 
     const handleDeleteTweet = (id) => {
         fetch(`http://localhost:3000/tweets/delete/${id}`, {
